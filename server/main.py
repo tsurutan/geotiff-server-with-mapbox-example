@@ -35,8 +35,8 @@ def tile(
         y: int,
 ):
     """Handle tile requests."""
-    with Reader("data/out.tif") as cog:
-        img = cog.tile(x, y, z)
+    with Reader("data/merge_cog.tif") as cog:
+        img = cog.tile(x, y, z, nodata=0)
     content = img.render(img_format="PNG", **img_profiles.get("png"))
     return Response(content, media_type="image/png")
 

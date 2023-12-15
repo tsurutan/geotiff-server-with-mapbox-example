@@ -35,6 +35,22 @@ Before getting started, ensure you have a Mapbox account and insert the API toke
    npm run dev
    ```
 
+## Merge multiple tif files
+
+Add -n option if you want to make unused parts transparent.
+
+```sh
+gdal_merge.py -n 0 -o output.file input1.tif input2.tif input3.tif
+```
+
+## Convert tif to cog
+
+```sh
+gdal_translate input.tiff temp.tiff -co TILED=YES
+gdaladdo -r nearest temp.tiff 2 4 8 16 32 64
+gdal_translate temp.tiff output.tif -co TILED=YES -co COPY_SRC_OVERVIEWS=YES
+```
+
 ## Usage
 
 Provide information on how to use the library and include any essential code snippets.
